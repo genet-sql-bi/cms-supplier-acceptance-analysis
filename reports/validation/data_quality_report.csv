@@ -1,0 +1,12 @@
+check,value
+total_rows,57197
+total_columns,17
+distinct_provider_id,57197
+duplicate_provider_id_rows,0
+exact_duplicate_rows,0
+target_true_count,29416
+target_false_count,27781
+distinct_states,55
+earliest_participation_date,1940-01-02 00:00:00
+latest_participation_date,2026-07-01 00:00:00
+rows_before_year_2000,6915
