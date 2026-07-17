@@ -1,0 +1,8 @@
+action,detail,reason,rows_affected
+drop_columns,"businessname, practicename, practiceaddress1, practiceaddress2, practicezip9code, telephonenumber, is_contracted_for_cba, providertypelist","Excluded by explicit decision: identifying/contact fields, zero-variance field, or 88% missing field",0
+trim_whitespace,specialitieslist,Leading/trailing whitespace standardization,752
+trim_whitespace,supplieslist,Leading/trailing whitespace standardization,26
+standardize_case,practicestate uppercased,Consistent state code formatting,0
+convert_boolean_target,"acceptsassignement -> acceptsassignement_bool, AcceptsNumeric",Type conversion for reliable filtering and modeling,0
+flag_suspicious_dates,date_reliability_flag column added,"6,915 pre-2000 dates found; 4048 rows share the single value 1998-01-01, and several other top values are round year-boundary dates — indicates legacy placeholder dates from system migration, not genuine enrollment dates. Rows preserved, not deleted; flagged for downstream caution.",5469
+fill_missing_categorical,"specialitieslist, supplieslist","752 rows missing specialitieslist and 26 rows missing supplieslist are otherwise complete, valid provider records (acceptance rate close to baseline, spread across 50 states) - filled with explicit 'Not Specified' rather than dropped or guessed, to preserve real provider records without fabricating a category",778

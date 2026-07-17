@@ -1,0 +1,2 @@
+original_rows,cleaned_rows,rows_removed,rows_modified_estimate,original_distinct_providers,cleaned_distinct_providers,original_acceptance_rate_pct,cleaned_acceptance_rate_pct,columns_original,columns_cleaned
+57197,57197,0,7025,57197,57197,51.43,51.43,17,13
