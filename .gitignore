@@ -1,0 +1,23 @@
+# Environments
+venv/
+__pycache__/
+*.pyc
+
+# Data (raw CMS data should not be uploaded)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+
+# Large model files
+models/trained/*.joblib
+!models/trained/.gitkeep
+
+# OS / editor junk
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Secrets
+.env
