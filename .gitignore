@@ -8,6 +8,8 @@ data/raw/*
 !data/raw/.gitkeep
 data/interim/*
 !data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
 
 # Large model files (excluded by default; this one is small enough to include)
 models/trained/*.joblib
