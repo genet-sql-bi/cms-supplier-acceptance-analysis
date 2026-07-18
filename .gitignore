@@ -26,3 +26,7 @@ Thumbs.db
 .env
 
 data/raw/legacy_reference/*
+
+# Power BI files (large binary, doesn't render on GitHub - use screenshots + documentation instead)
+powerbi/report/*.pbix
+!powerbi/report/.gitkeep
