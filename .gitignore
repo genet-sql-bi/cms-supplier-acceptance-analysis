@@ -21,3 +21,5 @@ Thumbs.db
 
 # Secrets
 .env
+
+data/raw/legacy_reference/*
