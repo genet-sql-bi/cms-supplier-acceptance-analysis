@@ -1,0 +1,24 @@
+{
+  "model_type": "HistGradientBoostingClassifier",
+  "random_seed": 42,
+  "training_rows": 45757,
+  "test_rows": 11440,
+  "feature_count": 166,
+  "selection_reason": "Comparable ROC-AUC to Random Forest/Extra Trees but far lower overfitting gap (0.0101 vs 0.0923/0.0974), indicating better generalization",
+  "test_accuracy": 0.9007,
+  "test_precision": 0.8928,
+  "test_recall": 0.9171,
+  "test_f1": 0.9048,
+  "test_roc_auc": 0.9701,
+  "default_threshold": 0.5,
+  "case2_threshold": 0.7,
+  "case2_threshold_precision": 0.9447,
+  "false_positive_avg_probability": 0.6885,
+  "false_negative_avg_probability": 0.3463,
+  "not_used_as_features": [
+    "provider_id",
+    "acceptsassignement",
+    "practicecity"
+  ],
+  "known_limitations": "5,469 rows have suspected placeholder participation dates; model may reflect this data quality pattern rather than genuine behavioral signal for those providers. False positives average 0.6885 predicted probability, close to the Case 2 threshold of 0.70 - some Case 2 'opportunities' will be genuine false positives, not confirmed outreach candidates."
+}

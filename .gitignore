@@ -9,9 +9,10 @@ data/raw/*
 data/interim/*
 !data/interim/.gitkeep
 
-# Large model files
+# Large model files (excluded by default; this one is small enough to include)
 models/trained/*.joblib
 !models/trained/.gitkeep
+!models/trained/cms_acceptance_model.joblib
 
 # OS / editor junk
 .ipynb_checkpoints/
