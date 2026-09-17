@@ -1,7 +1,7 @@
 Model,Accuracy,Precision,Recall,F1,ROC_AUC,PR_AUC,Train_Time_sec,Predict_Time_sec,Train_Accuracy,Overfit_Gap,Selected,Selection_Reason
-Random Forest,0.9077,0.9059,0.9157,0.9108,0.9755,0.9757,4.03,0.4102,1.0,0.0923,False,
-Extra Trees,0.9026,0.9073,0.903,0.9051,0.9723,0.972,7.12,0.2938,1.0,0.0974,False,
-HistGradientBoosting,0.9007,0.8928,0.9171,0.9048,0.9701,0.9715,5.71,0.183,0.9108,0.0101,True,Comparable ROC-AUC to Random Forest/Extra Trees (0.9701 vs 0.9755/0.9723) but far lower overfitting (0.0101 gap vs 0.0923/0.0974) - better generalization expected on unseen data
-Gradient Boosting,0.8709,0.8671,0.8846,0.8757,0.9525,0.9522,23.35,0.1058,0.8679,-0.003,False,
-Logistic Regression,0.8223,0.8271,0.8275,0.8273,0.8985,0.8962,18.51,0.039,0.817,-0.0053,False,
-Decision Tree,0.8863,0.89,0.8887,0.8894,0.8862,0.8482,1.43,0.0265,1.0,0.1137,False,
+Random Forest,0.9118,0.9059,0.9239,0.9149,0.9775,0.9774,13.92,1.0228,1.0,0.0882,False,
+Extra Trees,0.9072,0.907,0.9126,0.9098,0.9754,0.9752,25.88,2.26,1.0,0.0928,False,
+HistGradientBoosting,0.8986,0.8877,0.9185,0.9028,0.9707,0.9723,41.66,2.2003,0.9108,0.0122,True,Comparable ROC-AUC to Random Forest/Extra Trees (0.9701 vs 0.9755/0.9723) but far lower overfitting (0.0101 gap vs 0.0923/0.0974) - better generalization expected on unseen data
+Gradient Boosting,0.8663,0.8577,0.8866,0.8719,0.9515,0.9531,67.67,0.3353,0.8688,0.0025,False,
+Logistic Regression,0.8146,0.8136,0.8284,0.8209,0.8976,0.8958,86.93,0.3223,0.8181,0.0035,False,
+Decision Tree,0.8903,0.8895,0.8977,0.8936,0.8901,0.851,3.13,0.0645,1.0,0.1097,False,
