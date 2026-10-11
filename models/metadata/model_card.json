@@ -4,21 +4,21 @@
   "training_rows": 45518,
   "test_rows": 11380,
   "feature_count": 165,
-  "selection_reason": "Comparable ROC-AUC to Random Forest/Extra Trees but far lower overfitting gap (0.0101 vs 0.0923/0.0974), indicating better generalization",
-  "test_accuracy": 0.8986,
-  "test_precision": 0.8877,
-  "test_recall": 0.9185,
-  "test_f1": 0.9028,
-  "test_roc_auc": 0.9707,
+  "selection_reason": "Comparable ROC-AUC to Random Forest/Extra Trees (0.9711 vs 0.9777/0.9755) but far lower overfitting (0.0132 gap vs 0.0867/0.0928) - better generalization expected on unseen data",
+  "test_accuracy": 0.8984,
+  "test_precision": 0.8886,
+  "test_recall": 0.9169,
+  "test_f1": 0.9025,
+  "test_roc_auc": 0.9711,
   "default_threshold": 0.5,
   "case2_threshold": 0.7,
-  "case2_threshold_precision": 0.9447,
-  "false_positive_avg_probability": 0.6731,
-  "false_negative_avg_probability": 0.3448,
+  "case2_threshold_precision": 0.9477,
+  "false_positive_avg_probability": 0.6749,
+  "false_negative_avg_probability": 0.3473,
   "not_used_as_features": [
     "provider_id",
     "acceptsassignement",
     "practicecity"
   ],
-  "known_limitations": "5,469 rows have suspected placeholder participation dates; model may reflect this data quality pattern rather than genuine behavioral signal for those providers. False positives average 0.6885 predicted probability, close to the Case 2 threshold of 0.70 - some Case 2 'opportunities' will be genuine false positives, not confirmed outreach candidates."
+  "known_limitations": "5,390 rows have suspected placeholder participation dates; model may reflect this data quality pattern rather than genuine behavioral signal for those providers. False positives average 0.6749 predicted probability, close to the Case 2 threshold of 0.70 - some Case 2 'opportunities' will be genuine false positives, not confirmed outreach candidates."
 }
