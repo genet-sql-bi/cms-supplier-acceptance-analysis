@@ -1,0 +1,137 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 547.99388349082869,
+            "y": 511.12597225584705
+          },
+          "nodeIndex": "DimSpecialties",
+          "nodeLineageTag": "1bc35c44-afb6-4a4c-a651-453667e51640",
+          "size": {
+            "height": 166.13738516816238,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1725.7498941679985,
+            "y": 483.91503024200654
+          },
+          "nodeIndex": "DimSupplies",
+          "nodeLineageTag": "cf4f11ea-d97b-4aa8-8056-3adadbefcc5e",
+          "size": {
+            "height": 176.65804314558648,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 547.85650068113625,
+            "y": 1060.3962999131209
+          },
+          "nodeIndex": "ProviderSpecialties",
+          "nodeLineageTag": "2dc29f02-4252-43db-a59d-1f0f8d6fd5b3",
+          "size": {
+            "height": 159.56197393227228,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1728.5631553898768,
+            "y": 1067.5101702459042
+          },
+          "nodeIndex": "ProviderSupplies",
+          "nodeLineageTag": "beaec96c-056f-47cc-89e3-8f0d368cb431",
+          "size": {
+            "height": 168.67148044920418,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 3563.3679530694553,
+            "y": 1179.4832093078469
+          },
+          "nodeIndex": "..Measures",
+          "nodeLineageTag": "5260de2f-8eae-4d2b-9aa3-c893587149ad",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 3420.7375392676363,
+            "y": 1394.9211738208278
+          },
+          "nodeIndex": "KPI_Waterfall",
+          "nodeLineageTag": "ef2546b5-393a-4fca-b61e-8776b9279735",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 3622.2293826456439,
+            "y": 760.37076865735946
+          },
+          "nodeIndex": "Acceptance_Category",
+          "nodeLineageTag": "228ec752-fa98-49dc-b889-83519efb932a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 3358.3728819645075,
+            "y": 621.54018169901929
+          },
+          "nodeIndex": "Waterfall Stage (WF7)",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1187.1434951598535,
+            "y": 879.83256160580936
+          },
+          "nodeIndex": "Fact_Providers",
+          "size": {
+            "height": 530.13939325615229,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 36.093789493528369,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

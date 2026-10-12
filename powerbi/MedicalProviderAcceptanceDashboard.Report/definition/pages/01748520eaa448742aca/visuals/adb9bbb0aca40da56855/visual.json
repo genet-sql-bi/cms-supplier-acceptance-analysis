@@ -1,0 +1,186 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "adb9bbb0aca40da56855",
+  "position": {
+    "x": 870.97079052836068,
+    "y": 462.09839164143585,
+    "z": 13,
+    "height": 180.66985645933016,
+    "width": 881.91387559808618,
+    "tabOrder": 15
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Providers"
+                    }
+                  },
+                  "Property": "Risk_Level"
+                }
+              },
+              "queryRef": "Fact_Providers.Risk_Level",
+              "nativeQueryRef": "Risk_Level"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Total Providers."
+                }
+              },
+              "queryRef": "..Measures.Total Providers.",
+              "nativeQueryRef": "TotalProviders.",
+              "displayName": "TotalProviders."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Avg Predicted Probability"
+                }
+              },
+              "queryRef": "..Measures.Avg Predicted Probability",
+              "nativeQueryRef": "Avg Predicted Probability"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Actual Acceptance Rate"
+                }
+              },
+              "queryRef": "..Measures.Actual Acceptance Rate",
+              "nativeQueryRef": "Actual Acceptance Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Calibration Gap"
+                }
+              },
+              "queryRef": "..Measures.Calibration Gap",
+              "nativeQueryRef": "Calibration Gap"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "..Measures"
+                  }
+                },
+                "Property": "Actual Acceptance Rate"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3bb97d188a80b1c54433",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Providers"
+              }
+            },
+            "Property": "Risk_Level"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "567c45f670984a0391a6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Total Providers."
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6f2eea524d63a35a9964",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Avg Predicted Probability"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ff1bd1157d89e9ca4015",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Actual Acceptance Rate"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6104b4a2c6069d16ad81",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Calibration Gap"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

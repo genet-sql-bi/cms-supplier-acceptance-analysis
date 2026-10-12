@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "MedicalProviderAcceptanceDashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "01c235b5-b787-4797-9828-1e25ca8e34cf"
+  }
+}

@@ -1,0 +1,46 @@
+table DimSpecialties
+	lineageTag: 1bc35c44-afb6-4a4c-a651-453667e51640
+
+	column specialty_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fbaad67-4285-43ab-a154-265ffe9c5562
+		summarizeBy: none
+		sourceColumn: specialty_id
+
+		annotation SummarizationSetBy = User
+
+	column SpecialitiesList
+		dataType: string
+		lineageTag: 18da948d-ca2f-4b78-9ff5-c60001466b9e
+		summarizeBy: none
+		sourceColumn: SpecialitiesList
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSpecialties = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\GitProjects\cms-supplier-acceptance-analysis\data\processed\cms_supplier_predictions.csv"),[Delimiter=",", Columns=20, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Filtered Rows" = Table.SelectRows(#"Promoted Headers", each true),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"provider_id", "SpecialitiesList"}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Removed Other Columns", {{"SpecialitiesList", Splitter.SplitTextByDelimiter("|", QuoteStyle.None), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "SpecialitiesList"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"SpecialitiesList", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type1",{{"SpecialitiesList", Text.Trim, type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Trimmed Text",{"provider_id"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Duplicates","","",Replacer.ReplaceValue,{"SpecialitiesList"}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Replaced Value", each ([SpecialitiesList] <> "")),
+				    #"Added Index" = Table.AddIndexColumn(#"Filtered Rows1", "Index", 1, 1, Int64.Type),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Index",{"Index", "SpecialitiesList"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"Index", "specialty_id"}}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Renamed Columns", each ([SpecialitiesList] <> "Unknown Supplier/Provider"))
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

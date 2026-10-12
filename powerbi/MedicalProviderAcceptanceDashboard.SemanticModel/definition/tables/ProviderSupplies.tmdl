@@ -1,0 +1,52 @@
+table ProviderSupplies
+	isHidden
+	lineageTag: beaec96c-056f-47cc-89e3-8f0d368cb431
+
+	column supplyID
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c4eefe4f-e945-43ef-8213-29d1072a3ea1
+		summarizeBy: none
+		sourceColumn: supplyID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column provider_id
+		dataType: string
+		isHidden
+		lineageTag: ac2dba67-b38d-4a92-b73b-e0db1e3419fd
+		summarizeBy: none
+		sourceColumn: provider_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProviderSupplies = m
+		mode: import
+		source =
+				let
+				    Source = Fact_Providers,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"provider_id", "SuppliesList"}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Removed Other Columns", {{"SuppliesList", Splitter.SplitTextByDelimiter("|", QuoteStyle.None), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "SuppliesList"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"SuppliesList", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"SuppliesList", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"SuppliesList", Text.Clean, type text}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Cleaned Text"),
+				    #"Merged Queries" = Table.NestedJoin(#"Removed Duplicates", {"SuppliesList"}, DimSupplies, {"SuppliesList"}, "DimSupplies", JoinKind.LeftOuter),
+				    #"Expanded DimSupplies" = Table.ExpandTableColumn(#"Merged Queries", "DimSupplies", {"supplyID"}, {"supplyID"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Expanded DimSupplies",{"SuppliesList"}),
+				    #"Removed Duplicates1" = Table.Distinct(#"Removed Columns", {"supplyID"}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Removed Duplicates1",{"supplyID", "provider_id"})
+				in
+				    #"Reordered Columns"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

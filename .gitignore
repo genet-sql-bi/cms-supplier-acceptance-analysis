@@ -30,3 +30,7 @@ data/raw/legacy_reference/*
 # Power BI files (large binary, doesn't render on GitHub - use screenshots + documentation instead)
 powerbi/report/*.pbix
 !powerbi/report/.gitkeep
+
+# Power BI local cache and settings (contain data / machine-specific)
+**/.pbi/cache.abf
+**/.pbi/localSettings.json

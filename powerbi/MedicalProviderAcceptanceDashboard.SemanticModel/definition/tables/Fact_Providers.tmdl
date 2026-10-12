@@ -1,0 +1,238 @@
+table Fact_Providers
+	lineageTag: e6db1249-d44e-413e-8c2a-2265155915a9
+
+	column provider_id
+		dataType: string
+		lineageTag: 8a298e92-1f1b-47a5-a04e-2d0fd7e1032a
+		summarizeBy: none
+		sourceColumn: provider_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column latitude
+		dataType: double
+		lineageTag: 54d4892e-46db-45b9-bd65-fa5c4110c55f
+		dataCategory: Latitude
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column longitude
+		dataType: double
+		lineageTag: 84847e13-9bdd-4165-8118-86b8cbd82269
+		dataCategory: Longitude
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Risk_Level
+		dataType: string
+		lineageTag: 9172d21e-dbeb-4c9a-ba67-9a1897f3b6df
+		summarizeBy: none
+		sourceColumn: Risk_Level
+		sortByColumn: Risk_Order
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 08469094-21c6-45bc-9864-7b5748dbff43
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 682dcd16-130b-4e40-8693-84c94f789dfa
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParticipationBeginDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 24e3cbfc-4470-4b82-a84b-22a347072eb1
+		summarizeBy: none
+		sourceColumn: ParticipationBeginDate
+
+		variation Variation
+			isDefault
+			relationship: 5b489972-f8d7-4179-b74f-4074bd55ea47
+			defaultHierarchy: LocalDateTable_ab43f79b-18d8-462a-a572-4d008f6a16b1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column date_reliability_flag
+		dataType: string
+		lineageTag: 4df34726-fba5-4012-83b5-a9309ffffe2c
+		summarizeBy: none
+		sourceColumn: date_reliability_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpecialitiesList
+		dataType: string
+		lineageTag: 22a9838b-6294-4c3d-93e7-92be7644aeca
+		summarizeBy: none
+		sourceColumn: SpecialitiesList
+
+		annotation SummarizationSetBy = Automatic
+
+	column SuppliesList
+		dataType: string
+		lineageTag: ff36ab47-fbb4-41d2-b785-fb58ef1f03e1
+		summarizeBy: none
+		sourceColumn: SuppliesList
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actual_Acceptance
+		dataType: string
+		lineageTag: f8b765ac-e299-4c26-a4bd-43a0e862b176
+		summarizeBy: none
+		sourceColumn: Actual_Acceptance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actual_Acceptance_Bool
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: eea5042a-54e6-4ea6-93d6-05c41ec43c4c
+		summarizeBy: none
+		sourceColumn: Actual_Acceptance_Bool
+
+		annotation SummarizationSetBy = Automatic
+
+	column Predicted_Probability
+		dataType: double
+		lineageTag: f8632514-d370-431c-9ff1-e36f893ec46c
+		summarizeBy: sum
+		sourceColumn: Predicted_Probability
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Predicted_Class
+		dataType: int64
+		formatString: 0
+		lineageTag: b255d817-8b03-4d43-a6c4-a399c29d17d1
+		summarizeBy: sum
+		sourceColumn: Predicted_Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Predicted_Class_Label
+		dataType: string
+		lineageTag: 92ae2da0-94d3-41f5-865d-c14fc5f4c582
+		summarizeBy: none
+		sourceColumn: Predicted_Class_Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prediction_Confidence
+		dataType: double
+		lineageTag: 0b34e435-cb31-455c-88d0-7970fb3531cc
+		summarizeBy: sum
+		sourceColumn: Prediction_Confidence
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Correct_Prediction
+		dataType: int64
+		formatString: 0
+		lineageTag: e08c29ef-de5d-4a63-823f-5747116205a5
+		summarizeBy: sum
+		sourceColumn: Correct_Prediction
+
+		annotation SummarizationSetBy = Automatic
+
+	column Model_Version
+		dataType: string
+		lineageTag: 1aff1b72-6bfc-4431-bbd5-4bce82025170
+		summarizeBy: none
+		sourceColumn: Model_Version
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scoring_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dcb5d270-cf90-4d42-83a5-858b426d7316
+		summarizeBy: none
+		sourceColumn: Scoring_Date
+
+		variation Variation
+			isDefault
+			relationship: 9d70c3e2-be6a-4db3-af09-8ed600e9b1eb
+			defaultHierarchy: LocalDateTable_0b1d3eaf-05c2-43f8-84ad-dac55a4dc623.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Risk_Order =
+			
+			VAR p = Fact_Providers[Predicted_Probability]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    p >= 0.6, 1,
+			    p >= 0.3, 2,
+			    3
+			)
+		formatString: 0
+		lineageTag: 1c89cb2a-7797-4916-9f61-16fba8cf6bff
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actual_Label = IF( Fact_Providers[Actual_Acceptance_Bool], "ActuallyAccepted", "ActuallyDeclined" )
+		lineageTag: 82acc4c8-a882-4f88-aea7-622ae10555f6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Enrollment Year' = YEAR( Fact_Providers[ParticipationBeginDate] )
+		formatString: 0
+		lineageTag: 299b8e05-2eed-4242-bc99-264410739660
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column split
+		dataType: string
+		lineageTag: 950b823c-ca7d-4e25-bcaf-56ba8936d0eb
+		summarizeBy: none
+		sourceColumn: split
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Providers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\GitProjects\cms-supplier-acceptance-analysis\data\processed\cms_supplier_predictions.csv"),[Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Predicted_Probability", type number}, {"Predicted_Class", Int64.Type}, {"Prediction_Confidence", type number}, {"Correct_Prediction", Int64.Type}, {"Scoring_Date", type date}, {"Actual_Acceptance_Bool", type logical}, {"ParticipationBeginDate", type date}, {"latitude", type number}, {"longitude", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

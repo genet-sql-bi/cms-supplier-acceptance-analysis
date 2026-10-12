@@ -1,0 +1,41 @@
+table DimSupplies
+	lineageTag: cf4f11ea-d97b-4aa8-8056-3adadbefcc5e
+
+	column supplyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 343a1004-eba7-4a39-8387-7f29998aa6bd
+		summarizeBy: none
+		sourceColumn: supplyID
+
+		annotation SummarizationSetBy = User
+
+	column SuppliesList
+		dataType: string
+		lineageTag: 836462d4-32cf-494c-9616-369bb431aded
+		summarizeBy: none
+		sourceColumn: SuppliesList
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSupplies = m
+		mode: import
+		source =
+				let
+				    Source = Fact_Providers,
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"SuppliesList"}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Removed Other Columns", {{"SuppliesList", Splitter.SplitTextByDelimiter("|", QuoteStyle.None), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "SuppliesList"),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"SuppliesList", type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Changed Type",{{"SuppliesList", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"SuppliesList", Text.Clean, type text}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Cleaned Text"),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicates", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "supplyID"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns",{"supplyID", "SuppliesList"})
+				in
+				    #"Reordered Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

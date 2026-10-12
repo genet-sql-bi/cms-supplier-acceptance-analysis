@@ -1,0 +1,38 @@
+relationship ee6dc9c2-6955-2b55-37fb-641737a77b8a
+	crossFilteringBehavior: bothDirections
+	fromColumn: ProviderSpecialties.provider_id
+	toColumn: Fact_Providers.provider_id
+
+relationship 9a1e4194-6e84-964f-bb2f-b02151088596
+	fromColumn: ProviderSupplies.supplyID
+	toColumn: DimSupplies.supplyID
+
+relationship 302177a6-9d4e-86ac-846b-064d0777c191
+	crossFilteringBehavior: bothDirections
+	fromColumn: ProviderSupplies.provider_id
+	toColumn: Fact_Providers.provider_id
+
+relationship 98bde793-cbe3-acdd-14ec-f061a8a33696
+	fromColumn: ProviderSpecialties.'DimSpecialties.specialty_id'
+	toColumn: DimSpecialties.specialty_id
+
+relationship AutoDetected_97690f1b-ff8e-460e-97aa-fe0128ee68a7
+	isActive: false
+	fromColumn: Fact_Providers.SuppliesList
+	toColumn: DimSupplies.SuppliesList
+
+relationship 5b489972-f8d7-4179-b74f-4074bd55ea47
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_Providers.ParticipationBeginDate
+	toColumn: LocalDateTable_ab43f79b-18d8-462a-a572-4d008f6a16b1.Date
+
+relationship 9d70c3e2-be6a-4db3-af09-8ed600e9b1eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_Providers.Scoring_Date
+	toColumn: LocalDateTable_0b1d3eaf-05c2-43f8-84ad-dac55a4dc623.Date
+
+relationship AutoDetected_c5c62e61-34a7-41b1-87a0-bb9a04a2e81f
+	isActive: false
+	fromColumn: Fact_Providers.SpecialitiesList
+	toColumn: DimSpecialties.SpecialitiesList
+

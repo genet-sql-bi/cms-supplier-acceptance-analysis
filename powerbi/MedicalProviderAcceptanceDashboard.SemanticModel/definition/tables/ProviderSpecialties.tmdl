@@ -1,0 +1,58 @@
+table ProviderSpecialties
+	isHidden
+	lineageTag: 2dc29f02-4252-43db-a59d-1f0f8d6fd5b3
+
+	column provider_id
+		dataType: string
+		isHidden
+		lineageTag: 89964e2a-6da0-4144-bc51-16d7f3fef075
+		summarizeBy: none
+		sourceColumn: provider_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DimSpecialties.specialty_id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 33cfe12f-414c-477e-b6ba-d504442a0934
+		summarizeBy: none
+		sourceColumn: DimSpecialties.specialty_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SpecialitiesList
+		dataType: string
+		lineageTag: 08add926-664a-4ef7-830a-b2aae38089f8
+		summarizeBy: none
+		sourceColumn: SpecialitiesList
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ProviderSpecialties = m
+		mode: import
+		source =
+				let
+				 Source = Csv.Document(File.Contents("C:\GitProjects\cms-supplier-acceptance-analysis\data\processed\cms_supplier_predictions.csv"),[Delimiter=",", Columns=20, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Filtered Rows" = Table.SelectRows(#"Promoted Headers", each true),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"provider_id", "SpecialitiesList"}),
+				    #"Split Column by Delimiter" = Table.ExpandListColumn(Table.TransformColumns(#"Removed Other Columns", {{"SpecialitiesList", Splitter.SplitTextByDelimiter("|", QuoteStyle.None), let itemType = (type nullable text) meta [Serialized.Text = true] in type {itemType}}}), "SpecialitiesList"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"SpecialitiesList", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type1",{{"SpecialitiesList", "SpecialitiesList"}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Renamed Columns",{{"SpecialitiesList", Text.Trim, type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Trimmed Text", {"SpecialitiesList"}, DimSpecialties, {"SpecialitiesList"}, "DimSpecialties", JoinKind.LeftOuter),
+				    #"Expanded DimSpecialties" = Table.ExpandTableColumn(#"Merged Queries", "DimSpecialties", {"specialty_id"}, {"DimSpecialties.specialty_id"})
+				in
+				    #"Expanded DimSpecialties"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,208 @@
+table '..Measures'
+	lineageTag: 5260de2f-8eae-4d2b-9aa3-c893587149ad
+
+	measure 'Total Providers.' = DISTINCTCOUNT('Fact_Providers'[provider_id])
+		formatString: 0.000
+		displayFolder: Total Providers_ Details
+		lineageTag: 8b3d9f04-a77b-4b7d-92d4-6d5485acfe7a
+
+	measure 'Actual_Accept % (CARD)' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('Fact_Providers'),
+			        'Fact_Providers'[Actual_Acceptance_Bool] = TRUE
+			    ),
+			    COUNTROWS('Fact_Providers')
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Actual_Acceptance
+		lineageTag: 22615bc0-8856-436e-a62f-8889023020d8
+
+	measure 'Providers_Count (Scatter Plot)' =
+			
+			DISTINCTCOUNT(
+			    'Fact_Providers'[provider_id]
+			)
+		formatString: 0
+		displayFolder: ScatterPlot_Measures
+		lineageTag: 6ffb2f03-e7b4-452c-b5e8-f792d73a6b86
+
+	measure 'Accepted (Bar Chart)' = ```
+			CALCULATE(
+			    COUNTROWS('Fact_Providers'),
+			    'Fact_Providers'[Actual_Acceptance_Bool] = TRUE())
+			
+			```
+		formatString: 0
+		displayFolder: BarChart_Measures
+		lineageTag: 7ba04b32-06fc-4a77-a5f9-bcc59aa04e74
+
+	measure '.Accep% (Bar Chart)' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('Fact_Providers'),
+			        'Fact_Providers'[Actual_Acceptance_Bool] = TRUE
+			    ),
+			    COUNTROWS('Fact_Providers')
+			)
+		displayFolder: BarChart_Measures
+		lineageTag: b606bf08-c64f-457f-be3c-f662d9014543
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'PreAccept% (Bar Chart)' = ```
+			
+			VAR accepted = 
+			    CALCULATE(
+			        COUNTROWS(
+			            FILTER(
+			                'Fact_Providers',
+			                'Fact_Providers'[Predicted_Probability] >= 0.5
+			            )
+			        )
+			    )
+			VAR total = COUNTROWS('Fact_Providers')
+			VAR result = DIVIDE(accepted, total)
+			RETURN IF(ISBLANK(result), 0, result)
+			
+			```
+		displayFolder: BarChart_Measures
+		lineageTag: c22d9880-6e35-49ae-8a6d-41b106e8ab86
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HighRisk% (Bar Chart)' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('Fact_Providers'),
+			        'Fact_Providers'[Risk_Level] = "High"
+			    ),
+			    COUNTROWS('Fact_Providers'),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: BarChart_Measures
+		lineageTag: cecdbc2a-1641-45b7-8e98-149bb70e15e6
+
+	measure 'Accepted Count' =
+			
+			CALCULATE( COUNTROWS(Fact_Providers), KEEPFILTERS( Fact_Providers[Actual_Acceptance_Bool] = TRUE() ) )
+		formatString: 0
+		displayFolder: Total Providers_ Details
+		lineageTag: b103e094-994b-43c6-88b1-16a0dc990ca4
+
+	measure 'Actual Acceptance Rate' = DIVIDE( [Accepted Count], [Total Providers.] )
+		formatString: 0%;-0%;0%
+		displayFolder: Total Providers_ Details
+		lineageTag: f28057ae-4083-4b86-9853-46e85184065f
+
+	measure 'Predicted Acceptance Rate' = AVERAGE( Fact_Providers[Predicted_Class] )
+		formatString: 0%;-0%;0%
+		displayFolder: Total Providers_ Details
+		lineageTag: 0ed34f63-6b46-431f-87ce-5d42a589d3cf
+
+	measure 'Model Accuracy' = AVERAGE( Fact_Providers[Correct_Prediction] )
+		formatString: 0%;-0%;0%
+		displayFolder: Total Providers_ Details
+		lineageTag: 96a9b330-dd50-4980-8edf-4b2cd21cdf92
+
+	measure 'Avg Predicted Probability' = AVERAGE( Fact_Providers[Predicted_Probability] )
+		displayFolder: Total Providers_ Details
+		lineageTag: 7ee94c32-11dd-45e6-8d45-4feb9ada894e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Calibration Gap' = [Actual Acceptance Rate] - [Avg Predicted Probability]
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Total Providers_ Details
+		lineageTag: c6a025e0-8c36-46b3-810d-568f1aeda1eb
+
+	measure '.Last Refreshed' =
+			
+			FORMAT(NOW(), "MM/DD/YYYY hh:mm AM/PM")
+		displayFolder: Total Providers_ Details
+		lineageTag: f39bbe02-1ff6-4de3-adf5-b8c2308a4fd4
+
+	measure 'Data As Of' =
+			
+			"Data as of " & FORMAT( MAX( Fact_Providers[Scoring_Date] ), "dd MMM yyyy" )
+		displayFolder: Total Providers_ Details
+		lineageTag: 3eb4d4f0-a3f8-4603-98b9-ce46db4b6838
+
+	measure TP =
+			
+			VAR th = [Threshold Value]
+			RETURN CALCULATE(COUNTROWS(Fact_Providers),
+			    Fact_Providers[split] = "test",
+			    Fact_Providers[Predicted_Probability] >= th,
+			    Fact_Providers[Actual_Acceptance_Bool] = TRUE())
+		formatString: #,0
+		displayFolder: Test
+		lineageTag: 841bd80a-e59b-4dac-b565-026e4ed2b9e3
+
+	measure FP =
+			
+			VAR th = [Threshold Value]
+			RETURN CALCULATE(COUNTROWS(Fact_Providers),
+			    Fact_Providers[split] = "test",
+			    Fact_Providers[Predicted_Probability] >= th,
+			    Fact_Providers[Actual_Acceptance_Bool] = FALSE())
+		formatString: #,0
+		displayFolder: Test
+		lineageTag: 06e810de-7265-4413-9b3b-83e052abecb2
+
+	measure FN =
+			
+			VAR th = [Threshold Value]
+			RETURN CALCULATE(COUNTROWS(Fact_Providers),
+			    Fact_Providers[split] = "test",
+			    Fact_Providers[Predicted_Probability] < th,
+			    Fact_Providers[Actual_Acceptance_Bool] = TRUE())
+		formatString: #,0
+		displayFolder: Test
+		lineageTag: 3fea5927-d05e-4662-91d9-e57c3968fd84
+
+	measure TN =
+			
+			VAR th = [Threshold Value]
+			RETURN CALCULATE(COUNTROWS(Fact_Providers),
+			    Fact_Providers[split] = "test",
+			    Fact_Providers[Predicted_Probability] < th,
+			    Fact_Providers[Actual_Acceptance_Bool] = FALSE())
+		formatString: #,0
+		displayFolder: Test
+		lineageTag: 29989f83-dae9-442e-945e-16b9cf271397
+
+	measure 'Test Accuracy' = DIVIDE([TP] + [TN], [TP] + [FP] + [FN] + [TN])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Test
+		lineageTag: 10d38859-fd43-4373-a51d-1dca1fa06dfd
+
+	measure 'Test Precision' = DIVIDE([TP], [TP] + [FP])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Test
+		lineageTag: 990147d5-f4d3-455a-9c9d-6a84bddbe3c9
+
+	measure 'Test Recall' = DIVIDE([TP], [TP] + [FN])
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Test
+		lineageTag: 5b20d489-9d24-435d-afc8-f58c44e024e9
+
+	column Keep
+		formatString: 0
+		lineageTag: 7a3932c0-fca2-479c-9fe5-62ac480ad412
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Keep]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '..Measures' = calculated
+		mode: import
+		source = ROW("Keep", 1)
+
+	annotation PBI_Id = 705a98aa4fc44f4a94d4b1917362a4c9
+

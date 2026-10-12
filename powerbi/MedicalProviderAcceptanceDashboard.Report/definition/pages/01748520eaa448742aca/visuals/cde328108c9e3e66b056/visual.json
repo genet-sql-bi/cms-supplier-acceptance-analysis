@@ -1,0 +1,15 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "cde328108c9e3e66b056",
+  "position": {
+    "x": 31.01870866122481,
+    "y": 300.00072285507218,
+    "z": 9,
+    "height": 100,
+    "width": 330
+  },
+  "visualGroup": {
+    "displayName": "Acceptance Rate KPI",
+    "groupMode": "ScaleMode"
+  }
+}

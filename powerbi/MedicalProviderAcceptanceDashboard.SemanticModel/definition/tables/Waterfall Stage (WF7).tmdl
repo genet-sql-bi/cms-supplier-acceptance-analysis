@@ -1,0 +1,38 @@
+table 'Waterfall Stage (WF7)'
+	lineageTag: 9acde2e2-590f-4454-a343-7c7c9a235e2d
+
+	column Stage
+		lineageTag: 55884c47-84ef-434e-bdfe-c9f1637aac4d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Stage]
+
+		annotation SummarizationSetBy = Automatic
+
+	column SortOrder
+		formatString: 0
+		lineageTag: bc41d320-d099-4fd9-ab28-1fabba6b08ba
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [SortOrder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Waterfall Stage (WF7)' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Stage", STRING,
+				    "SortOrder", INTEGER,
+				    {
+				        {"Overall Acceptance Rate", 1},
+				        {"Low Risk", 2},
+				        {"Medium Risk", 3},
+				        {"High Risk", 4},
+				        {"Final Acceptance Rate", 5}
+				    }
+				)
+
+	annotation PBI_Id = 7210970e8d384bb09d409ad0edcda676
+
