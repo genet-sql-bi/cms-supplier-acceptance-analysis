@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "78c3c452cc75dde45085",
+  "position": {
+    "x": 320,
+    "y": 1050.5882352941176,
+    "z": 14003,
+    "height": 29.411764705882355,
+    "width": 1580,
+    "tabOrder": 11003
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Source: CMS Medical Equipment ",
+                    "textStyle": {
+                      "color": "#666666"
+                    }
+                  },
+                  {
+                    "value": "Suppliers"
+                  },
+                  {
+                    "value": " directory, Sept 2026 snapshot (single snapshot, not a trend). Model metrics from held-out test set (n = 11,380). See docs/limitations.md.",
+                    "textStyle": {
+                      "color": "#666666"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

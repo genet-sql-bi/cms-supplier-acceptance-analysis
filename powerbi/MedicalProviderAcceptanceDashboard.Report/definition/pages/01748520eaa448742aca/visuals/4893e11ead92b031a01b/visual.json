@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "4893e11ead92b031a01b",
   "position": {
-    "x": 389.01203267737128,
-    "y": 613.18845828805991,
-    "z": 3,
-    "height": 443.4077830093766,
-    "width": 738.46351965873873,
-    "tabOrder": 3
+    "x": 310,
+    "y": 655.71428571428578,
+    "z": 2000,
+    "height": 385.71428571428572,
+    "width": 594.28571428571433,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "scatterChart",
@@ -82,8 +82,9 @@
                 }
               },
               "queryRef": "..Measures.Actual Acceptance Rate",
-              "nativeQueryRef": "Actual Acceptance Rate",
-              "active": true
+              "nativeQueryRef": "Actual acceptance",
+              "active": true,
+              "displayName": "Actual acceptance"
             }
           ]
         },
@@ -101,7 +102,8 @@
                 }
               },
               "queryRef": "..Measures.Avg Predicted Probability",
-              "nativeQueryRef": "Avg Predicted Probability"
+              "nativeQueryRef": "Predicted acceptance",
+              "displayName": "Predicted acceptance"
             }
           ]
         }
@@ -190,7 +192,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -502,7 +504,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#252423'"
+                      "Value": "'#333333'"
                     }
                   }
                 }
@@ -511,28 +513,28 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "17D"
+                  "Value": "12D"
                 }
               }
             },
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Predicted vs Actual Acceptance by Specialty'"
+                  "Value": "'Predicted vs actual acceptance by specialty'"
                 }
               }
             },
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             }
@@ -558,7 +560,39 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Each dot = one specialty · on the line = accurate prediction'"
                 }
               }
             }
@@ -691,7 +725,7 @@
         }
       },
       {
-        "name": "fb88c3bad7290b89a326",
+        "name": "0893648ccf9b5ac4bec0",
         "field": {
           "Column": {
             "Expression": {
@@ -705,7 +739,7 @@
         "type": "Categorical"
       },
       {
-        "name": "99513861b70cc4c46a17",
+        "name": "7ad601a0577ae3dfc458",
         "field": {
           "Measure": {
             "Expression": {
@@ -719,7 +753,7 @@
         "type": "Advanced"
       },
       {
-        "name": "36f9fd46a565627bc017",
+        "name": "a5e48419f43fa18556a9",
         "field": {
           "Measure": {
             "Expression": {

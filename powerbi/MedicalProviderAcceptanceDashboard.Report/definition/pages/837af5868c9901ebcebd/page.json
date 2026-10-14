@@ -1,0 +1,67 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "837af5868c9901ebcebd",
+  "displayName": "Duplicate of Executive Overview",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Provider_Acceptance_Background.png'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Provider_Acceptance_Background9333063061849222.png"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Fit'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "45D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "c4e274d41f26453250d9",
+      "target": "df06513adb36b4ef1a6a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c4e274d41f26453250d9",
+      "target": "40e14b5bc13892d25d89",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "c4e274d41f26453250d9",
+      "target": "5101836f4aa6dda8c25c",
+      "type": "DataFilter"
+    }
+  ]
+}

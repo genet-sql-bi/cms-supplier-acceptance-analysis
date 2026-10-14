@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "4269de2c903e8e4a9e7b",
+  "position": {
+    "x": 196.47058823529412,
+    "y": 10.588235294117647,
+    "z": 9000,
+    "height": 96.666666666666671,
+    "width": 1723.3333333333335,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Medicare Provider Assignment Acceptance Analysis",
+                    "textStyle": {
+                      "fontSize": "24pt",
+                      "color": "#016e51"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "      Who accepts Medicare assignment, where, and how accurately we can predict it · CMS supplier directory, September 2026 · 56,898 providers",
+                    "textStyle": {
+                      "fontSize": "16pt",
+                      "color": "#000000"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

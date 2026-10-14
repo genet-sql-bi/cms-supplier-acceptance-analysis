@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "e8f86c119c03c7574ec8",
   "position": {
-    "x": 1140.6624009014447,
-    "y": 613.18845828805991,
-    "z": 2,
-    "height": 466.48476799871219,
-    "width": 738.46351965873873,
-    "tabOrder": 2
+    "x": 930.00000000000011,
+    "y": 705.71428571428578,
+    "z": 1000,
+    "height": 330,
+    "width": 597.14285714285722,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "azureMap",
@@ -75,6 +75,20 @@
               },
               "queryRef": "..Measures.Total Providers.",
               "nativeQueryRef": "Total Providers."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Actual_Accept % (CARD)"
+                }
+              },
+              "queryRef": "..Measures.Actual_Accept % (CARD)",
+              "nativeQueryRef": "Actual_Accept % (CARD)"
             }
           ]
         }
@@ -90,21 +104,21 @@
             "zoom": {
               "expr": {
                 "Literal": {
-                  "Value": "2.74D"
+                  "Value": "2.34D"
                 }
               }
             },
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "37.36636838543413D"
+                  "Value": "38.138368117233114D"
                 }
               }
             },
             "centerLongitude": {
               "expr": {
                 "Literal": {
-                  "Value": "-94.22357130488437D"
+                  "Value": "-96.67533047828266D"
                 }
               }
             },
@@ -167,11 +181,25 @@
             "defaultStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "'blank_accessible'"
+                  "Value": "'blank'"
                 }
               }
             },
             "autoZoom": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showNavigationControls": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showStylePicker": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -332,7 +360,7 @@
                               "Entity": "..Measures"
                             }
                           },
-                          "Property": "Actual Acceptance Rate"
+                          "Property": "Map Value"
                         }
                       },
                       "FillRule": {
@@ -340,14 +368,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#E5F5E0'"
+                                "Value": "'#E6EEEF'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#006D2C'"
+                                "Value": "'#2F6F73'"
                               }
                             }
                           },
@@ -400,6 +428,13 @@
                   "Value": "0L"
                 }
               }
+            },
+            "borderShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -410,7 +445,7 @@
             "unselectedTransparency": {
               "expr": {
                 "Literal": {
-                  "Value": "67D"
+                  "Value": "63D"
                 }
               }
             }
@@ -476,14 +511,14 @@
             "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "100D"
+                  "Value": "3D"
                 }
               }
             },
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             }
@@ -508,9 +543,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "ThemeDataColor": {
-                      "ColorId": 1,
-                      "Percent": 0
+                    "Literal": {
+                      "Value": "'#333333'"
                     }
                   }
                 }
@@ -519,28 +553,33 @@
             "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "17D"
+                  "Value": "14D"
                 }
               }
             },
             "text": {
               "expr": {
-                "Literal": {
-                  "Value": "'Predict Accept Rate  and Actual Accept by State '"
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Map Title"
                 }
               }
             },
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'center'"
+                  "Value": "'left'"
                 }
               }
             }
@@ -567,6 +606,32 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -627,7 +692,21 @@
         }
       },
       {
-        "name": "6ca1150818eeaa661b7a",
+        "name": "99892aff4debb5dacde1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Providers"
+              }
+            },
+            "Property": "State"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3bd694a67ef9a5397ae0",
         "field": {
           "Measure": {
             "Expression": {
@@ -641,7 +720,7 @@
         "type": "Advanced"
       },
       {
-        "name": "93e10c6ad4b94a8801b6",
+        "name": "bd6e4af15f4d786239d9",
         "field": {
           "Measure": {
             "Expression": {
@@ -655,18 +734,18 @@
         "type": "Advanced"
       },
       {
-        "name": "d58d6a96b2780ac59400",
+        "name": "321af4412408d3119391",
         "field": {
-          "Column": {
+          "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "Fact_Providers"
+                "Entity": "..Measures"
               }
             },
-            "Property": "State"
+            "Property": "Actual_Accept % (CARD)"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced"
       }
     ]
   }

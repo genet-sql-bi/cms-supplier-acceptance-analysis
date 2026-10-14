@@ -70,6 +70,11 @@
       "type": "RegisteredResources",
       "items": [
         {
+          "name": "FFFFBackground18681408657006326.png",
+          "path": "FFFFBackground18681408657006326.png",
+          "type": "Image"
+        },
+        {
           "name": "Provider_Acceptance_Background9333063061849222.png",
           "path": "Provider_Acceptance_Background9333063061849222.png",
           "type": "Image"

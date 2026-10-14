@@ -2,9 +2,11 @@ table '..Measures'
 	lineageTag: 5260de2f-8eae-4d2b-9aa3-c893587149ad
 
 	measure 'Total Providers.' = DISTINCTCOUNT('Fact_Providers'[provider_id])
-		formatString: 0.000
+		formatString: #,0
 		displayFolder: Total Providers_ Details
 		lineageTag: 8b3d9f04-a77b-4b7d-92d4-6d5485acfe7a
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Actual_Accept % (CARD)' =
 			
@@ -47,10 +49,9 @@ table '..Measures'
 			    ),
 			    COUNTROWS('Fact_Providers')
 			)
+		formatString: 0%;-0%;0%
 		displayFolder: BarChart_Measures
 		lineageTag: b606bf08-c64f-457f-be3c-f662d9014543
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'PreAccept% (Bar Chart)' = ```
 			
@@ -68,10 +69,9 @@ table '..Measures'
 			RETURN IF(ISBLANK(result), 0, result)
 			
 			```
+		formatString: 0%;-0%;0%
 		displayFolder: BarChart_Measures
 		lineageTag: c22d9880-6e35-49ae-8a6d-41b106e8ab86
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'HighRisk% (Bar Chart)' =
 			
@@ -95,12 +95,12 @@ table '..Measures'
 		lineageTag: b103e094-994b-43c6-88b1-16a0dc990ca4
 
 	measure 'Actual Acceptance Rate' = DIVIDE( [Accepted Count], [Total Providers.] )
-		formatString: 0%;-0%;0%
+		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Total Providers_ Details
 		lineageTag: f28057ae-4083-4b86-9853-46e85184065f
 
 	measure 'Predicted Acceptance Rate' = AVERAGE( Fact_Providers[Predicted_Class] )
-		formatString: 0%;-0%;0%
+		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Total Providers_ Details
 		lineageTag: 0ed34f63-6b46-431f-87ce-5d42a589d3cf
 
@@ -190,6 +190,60 @@ table '..Measures'
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Test
 		lineageTag: 5b20d489-9d24-435d-afc8-f58c44e024e9
+
+	measure 'Map Value' =
+			
+			SWITCH(
+			    SELECTEDVALUE('Map Metric'[Metric], "Actual acceptance rate"),
+			    "Actual acceptance rate",    [Actual Acceptance Rate],
+			    "Predicted acceptance rate", [Predicted Acceptance Rate],
+			    "Calibration gap",           [Calibration Gap]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5b075d4e-1399-4c3d-be6a-c0c650c399e5
+
+	measure Measure
+		lineageTag: 09420bd1-ff8c-4bb6-9c21-0e5a33848181
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Accuracy Subtitle' =
+			
+			"All providers (incl. training): " & FORMAT([Model Accuracy], "0%")
+		lineageTag: fbedffa7-f4e5-44f3-8771-91777195d240
+
+	measure 'Max State Calibration Gap' =
+			
+			MAXX(
+			    FILTER(VALUES(Fact_Providers[State]), [Total Providers.] >= 100),
+			    ABS([Calibration Gap])
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2ec694ac-0130-47c9-8bd1-88e78fcfe45f
+
+	measure 'Max Gap State' =
+			
+			VAR t =
+			    TOPN(1,
+			        FILTER(
+			            ADDCOLUMNS(VALUES(Fact_Providers[State]), "@gap", ABS([Calibration Gap])),
+			            [Total Providers.] >= 100),
+			        [@gap], DESC)
+			RETURN MAXX(t, Fact_Providers[State])
+		lineageTag: 2f26229e-5f3e-4431-8de2-dd377f09f8fc
+
+	measure 'Rank Rate (min 100)' =
+			
+			IF([Total Providers.] >= 100, [Actual Acceptance Rate], 99)
+		lineageTag: 2f148f71-6bf0-4e6c-b562-4514e95c2900
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Map Title' = SELECTEDVALUE('Map Metric'[Metric], "Actual acceptance rate") & " by state"
+		lineageTag: fdc9d436-cf82-4f85-a7af-6b658c6c5386
+
+	measure 'Max Gap Subtitle' = "in " & [Max Gap State]
+		lineageTag: d4e67449-850c-4be3-aec7-5e6bdf911a24
 
 	column Keep
 		formatString: 0
