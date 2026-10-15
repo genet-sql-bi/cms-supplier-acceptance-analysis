@@ -1,6 +1,7 @@
 # Environments
 venv/
 __pycache__/
+.pytest_cache/
 *.pyc
 
 # Data (raw CMS data should not be uploaded)
