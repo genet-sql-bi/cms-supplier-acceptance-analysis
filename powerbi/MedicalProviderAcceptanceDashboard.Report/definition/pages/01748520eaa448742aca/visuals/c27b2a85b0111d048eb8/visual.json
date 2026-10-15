@@ -391,6 +391,11 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "State",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {

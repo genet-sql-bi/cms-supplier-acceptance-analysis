@@ -110,10 +110,9 @@ table '..Measures'
 		lineageTag: 96a9b330-dd50-4980-8edf-4b2cd21cdf92
 
 	measure 'Avg Predicted Probability' = AVERAGE( Fact_Providers[Predicted_Probability] )
+		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Total Providers_ Details
 		lineageTag: 7ee94c32-11dd-45e6-8d45-4feb9ada894e
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Calibration Gap' = [Actual Acceptance Rate] - [Avg Predicted Probability]
 		formatString: 0.0%;-0.0%;0.0%
@@ -140,7 +139,7 @@ table '..Measures'
 			    Fact_Providers[Predicted_Probability] >= th,
 			    Fact_Providers[Actual_Acceptance_Bool] = TRUE())
 		formatString: #,0
-		displayFolder: Test
+		displayFolder: Model Performance
 		lineageTag: 841bd80a-e59b-4dac-b565-026e4ed2b9e3
 
 	measure FP =
@@ -151,7 +150,7 @@ table '..Measures'
 			    Fact_Providers[Predicted_Probability] >= th,
 			    Fact_Providers[Actual_Acceptance_Bool] = FALSE())
 		formatString: #,0
-		displayFolder: Test
+		displayFolder: Model Performance
 		lineageTag: 06e810de-7265-4413-9b3b-83e052abecb2
 
 	measure FN =
@@ -162,7 +161,7 @@ table '..Measures'
 			    Fact_Providers[Predicted_Probability] < th,
 			    Fact_Providers[Actual_Acceptance_Bool] = TRUE())
 		formatString: #,0
-		displayFolder: Test
+		displayFolder: Model Performance
 		lineageTag: 3fea5927-d05e-4662-91d9-e57c3968fd84
 
 	measure TN =
@@ -173,22 +172,22 @@ table '..Measures'
 			    Fact_Providers[Predicted_Probability] < th,
 			    Fact_Providers[Actual_Acceptance_Bool] = FALSE())
 		formatString: #,0
-		displayFolder: Test
+		displayFolder: Model Performance
 		lineageTag: 29989f83-dae9-442e-945e-16b9cf271397
 
 	measure 'Test Accuracy' = DIVIDE([TP] + [TN], [TP] + [FP] + [FN] + [TN])
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Test
+		displayFolder: Model Performance
 		lineageTag: 10d38859-fd43-4373-a51d-1dca1fa06dfd
 
 	measure 'Test Precision' = DIVIDE([TP], [TP] + [FP])
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Test
+		displayFolder: Model Performance
 		lineageTag: 990147d5-f4d3-455a-9c9d-6a84bddbe3c9
 
 	measure 'Test Recall' = DIVIDE([TP], [TP] + [FN])
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Test
+		displayFolder: Model Performance
 		lineageTag: 5b20d489-9d24-435d-afc8-f58c44e024e9
 
 	measure 'Map Value' =
@@ -201,11 +200,6 @@ table '..Measures'
 			)
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 5b075d4e-1399-4c3d-be6a-c0c650c399e5
-
-	measure Measure
-		lineageTag: 09420bd1-ff8c-4bb6-9c21-0e5a33848181
-
-		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
 
 	measure 'Accuracy Subtitle' =
 			
@@ -244,6 +238,91 @@ table '..Measures'
 
 	measure 'Max Gap Subtitle' = "in " & [Max Gap State]
 		lineageTag: d4e67449-850c-4be3-aec7-5e6bdf911a24
+
+	measure 'Test F1' =
+			
+			DIVIDE(
+			    2 * [Test Precision] * [Test Recall],
+			    [Test Precision] + [Test Recall]
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Model Performance
+		lineageTag: f374c5e2-5a98-4c00-9551-b4b677d2dc02
+
+	measure Measure
+		displayFolder: Model Performance
+		lineageTag: 08e0d52a-0887-483e-bbed-c7b7514c894e
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Train Accuracy' =
+			
+			VAR th = [Threshold Value]
+			VAR TrainRows = FILTER(Fact_Providers, Fact_Providers[split] = "train")
+			VAR Correct =
+			    COUNTROWS(
+			        FILTER(TrainRows,
+			            (Fact_Providers[Predicted_Probability] >= th)
+			                = (Fact_Providers[Actual_Acceptance_Bool] = TRUE())))
+			RETURN DIVIDE(Correct, COUNTROWS(TrainRows))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Model Performance
+		lineageTag: 7440ed35-6a1d-4253-8ad0-ec740a19246a
+
+	measure 'Train Test Gap' = ([Train Accuracy] - [Test Accuracy]) * 100
+		formatString: 0.0" pts";-0.0" pts"
+		displayFolder: Model Performance
+		lineageTag: 757cb91e-7483-41a1-8993-70897a6ef743
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Threshold Summary' =
+			
+			"At a threshold of " & FORMAT([Threshold Value], "0.00") & ", "
+			    & FORMAT([Test Precision], "0.0%") & " of providers flagged as accepting really do (precision), and the model finds "
+			    & FORMAT([Test Recall], "0.0%") & " of all real acceptors (recall). "
+			    & FORMAT([FP], "#,0") & " false alarms · "
+			    & FORMAT([FN], "#,0") & " missed acceptors."
+		displayFolder: Model Performance
+		lineageTag: c3e962b0-1cd8-4fc9-9b39-68085f81bb13
+
+	measure 'Gap Subtitle' =
+			
+			"Train " & FORMAT([Train Accuracy], "0.0%") & " vs test " & FORMAT([Test Accuracy], "0.0%")
+		displayFolder: Model Performance
+		lineageTag: ea40a85e-c99d-4254-8def-2cbedb3939ca
+
+	measure 'CM Count' =
+			
+			VAR a = SELECTEDVALUE(CM[Actual])
+			VAR p = SELECTEDVALUE(CM[Predicted])
+			RETURN
+			SWITCH(TRUE(),
+			    a = "Accepts"  && p = "Accepts",  [TP],
+			    a = "Declines" && p = "Accepts",  [FP],
+			    a = "Accepts"  && p = "Declines", [FN],
+			    a = "Declines" && p = "Declines", [TN])
+		formatString: #,0
+		displayFolder: Model Performance
+		lineageTag: a8bf2032-0465-448b-b6c5-e11087a63325
+
+	measure 'CM Colour' =
+			
+			IF(SELECTEDVALUE(CM[Actual]) = SELECTEDVALUE(CM[Predicted]), "#2F6F73", "#E08E2B")
+		displayFolder: Model Performance
+		lineageTag: acc753ed-d53f-41a3-999a-a69d2e95b577
+
+	measure 'Min Prob' = MIN(Fact_Providers[Predicted_Probability])
+		formatString: 0.000
+		isHidden
+		displayFolder: Model Performance
+		lineageTag: a97deb30-bee0-453f-a2db-9490f2cb59a7
+
+	measure 'Max Prob' = MAX(Fact_Providers[Predicted_Probability])
+		formatString: 0.000
+		isHidden
+		displayFolder: Model Performance
+		lineageTag: ba599e05-e0b7-4e4b-a811-646f0eea1f7a
 
 	column Keep
 		formatString: 0

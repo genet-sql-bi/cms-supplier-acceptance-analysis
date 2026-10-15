@@ -1,0 +1,39 @@
+table CM
+	lineageTag: 2b3c990b-eba5-4a9e-80b4-3532095d251a
+
+	column Actual
+		dataType: string
+		lineageTag: 19408901-80da-4a0b-93d9-08247080c04b
+		summarizeBy: none
+		sourceColumn: Actual
+
+		annotation SummarizationSetBy = Automatic
+
+	column Predicted
+		dataType: string
+		lineageTag: 786cf5b4-0dec-422f-9066-ea9a30b72676
+		summarizeBy: none
+		sourceColumn: Predicted
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: cd85c4ac-9a5b-448b-942a-448576e68403
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CM = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WckxOTi0oKVbSQWIZKsXqIMu4pCbnZOalgphGYCkkAYQqY3QpJKaJUmwsAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Actual = _t, Predicted = _t, Order = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Actual", type text}, {"Predicted", type text}, {"Order", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

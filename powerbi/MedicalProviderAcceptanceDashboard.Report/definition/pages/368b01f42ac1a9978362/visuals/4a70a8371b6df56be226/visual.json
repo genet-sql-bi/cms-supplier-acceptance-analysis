@@ -1,0 +1,401 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "4a70a8371b6df56be226",
+  "position": {
+    "x": 314.28571428571428,
+    "y": 661.42857142857144,
+    "z": 17010,
+    "height": 378.57142857142861,
+    "width": 591.42857142857144,
+    "tabOrder": 14005
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Providers"
+                    }
+                  },
+                  "Property": "Risk_Level"
+                }
+              },
+              "queryRef": "Fact_Providers.Risk_Level",
+              "nativeQueryRef": "Risk level",
+              "displayName": "Risk level"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Total Providers."
+                }
+              },
+              "queryRef": "..Measures.Total Providers.",
+              "nativeQueryRef": "Providers",
+              "displayName": "Providers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Avg Predicted Probability"
+                }
+              },
+              "queryRef": "..Measures.Avg Predicted Probability",
+              "nativeQueryRef": "Predicted",
+              "displayName": "Predicted"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Actual Acceptance Rate"
+                }
+              },
+              "queryRef": "..Measures.Actual Acceptance Rate",
+              "nativeQueryRef": "Actual",
+              "displayName": "Actual"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "..Measures"
+                    }
+                  },
+                  "Property": "Calibration Gap"
+                }
+              },
+              "queryRef": "..Measures.Calibration Gap",
+              "nativeQueryRef": " Gap (act − pre)",
+              "displayName": " Gap (act − pre)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.46311642018736D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Fact_Providers.Risk_Level"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "119.0050423786108D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "..Measures.Total Providers."
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "118.96732594989896D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "..Measures.Avg Predicted Probability"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "87.47963110947592D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "..Measures.Actual Acceptance Rate"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137.26296523418392D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "..Measures.Calibration Gap"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'High <0.30 · Medium 0.30–0.60 · Low ≥0.60'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibration by risk level (test set)'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5461e5f26fa15f9e2ac8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Providers"
+              }
+            },
+            "Property": "Risk_Level"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "750f529faaff06dd38fe",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Total Providers."
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "75d201087e2b7abffe71",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Avg Predicted Probability"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d52a8802339cce437246",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Actual Acceptance Rate"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "db6b4b82e9d1ef967dc2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "..Measures"
+              }
+            },
+            "Property": "Calibration Gap"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b28b245d700d9b14083d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Providers"
+              }
+            },
+            "Property": "split"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "Fact_Providers",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "split"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'test'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  }
+}

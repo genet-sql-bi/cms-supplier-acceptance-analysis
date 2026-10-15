@@ -391,6 +391,11 @@
         }
       ]
     },
+    "syncGroup": {
+      "groupName": "SpecialitiesList",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {

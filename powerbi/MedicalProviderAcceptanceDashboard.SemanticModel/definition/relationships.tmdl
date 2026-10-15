@@ -36,3 +36,9 @@ relationship AutoDetected_c5c62e61-34a7-41b1-87a0-bb9a04a2e81f
 	fromColumn: Fact_Providers.SpecialitiesList
 	toColumn: DimSpecialties.SpecialitiesList
 
+relationship AutoDetected_ed2182a4-aec6-4aa9-a261-2c335e3271e7
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Map Metric'.Order
+	toColumn: CM.Order
+

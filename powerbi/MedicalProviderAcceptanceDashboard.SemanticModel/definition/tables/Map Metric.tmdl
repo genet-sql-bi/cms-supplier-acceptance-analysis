@@ -16,7 +16,7 @@ table 'Map Metric'
 		dataType: int64
 		formatString: 0
 		lineageTag: 0246b484-c361-419b-8af5-0a6130cdbddc
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: Order
 
 		annotation SummarizationSetBy = Automatic

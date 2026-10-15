@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["Fact_Providers","DimSpecialties","ProviderSpecialties","DimSupplies","ProviderSupplies","Map Metric"]
+annotation PBI_QueryOrder = ["Fact_Providers","DimSpecialties","ProviderSpecialties","DimSupplies","ProviderSupplies","Map Metric","CM"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -26,6 +26,7 @@ ref table LocalDateTable_ab43f79b-18d8-462a-a572-4d008f6a16b1
 ref table LocalDateTable_0b1d3eaf-05c2-43f8-84ad-dac55a4dc623
 ref table Threshold
 ref table 'Map Metric'
+ref table CM
 
 ref cultureInfo en-US
 

@@ -5,13 +5,13 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 0
+        "y": 258.76919914514383
       },
       "nodes": [
         {
           "location": {
             "x": 547.99388349082869,
-            "y": 2241.738729368054
+            "y": 2865.9458930261781
           },
           "nodeIndex": "DimSpecialties",
           "nodeLineageTag": "1bc35c44-afb6-4a4c-a651-453667e51640",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 1725.7498941679985,
-            "y": 2214.5277873542136
+            "y": 2838.7349510123377
           },
           "nodeIndex": "DimSupplies",
           "nodeLineageTag": "cf4f11ea-d97b-4aa8-8056-3adadbefcc5e",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 547.85650068113625,
-            "y": 2791.0090570253278
+            "y": 3415.2162206834519
           },
           "nodeIndex": "ProviderSpecialties",
           "nodeLineageTag": "2dc29f02-4252-43db-a59d-1f0f8d6fd5b3",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 1728.5631553898768,
-            "y": 2798.1229273581112
+            "y": 3422.3300910162352
           },
           "nodeIndex": "ProviderSupplies",
           "nodeLineageTag": "beaec96c-056f-47cc-89e3-8f0d368cb431",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 3563.3679530694553,
-            "y": 2910.0959664200545
+            "y": 3534.3031300781786
           },
           "nodeIndex": "..Measures",
           "nodeLineageTag": "5260de2f-8eae-4d2b-9aa3-c893587149ad",
@@ -76,7 +76,7 @@
         {
           "location": {
             "x": 3420.7375392676363,
-            "y": 3125.5339309330348
+            "y": 3749.7410945911588
           },
           "nodeIndex": "KPI_Waterfall",
           "nodeLineageTag": "ef2546b5-393a-4fca-b61e-8776b9279735",
@@ -89,7 +89,7 @@
         {
           "location": {
             "x": 3622.2293826456439,
-            "y": 2490.9835257695668
+            "y": 3115.1906894276908
           },
           "nodeIndex": "Acceptance_Category",
           "nodeLineageTag": "228ec752-fa98-49dc-b889-83519efb932a",
@@ -102,7 +102,7 @@
         {
           "location": {
             "x": 3358.3728819645075,
-            "y": 2352.1529388112267
+            "y": 2976.3601024693507
           },
           "nodeIndex": "Waterfall Stage (WF7)",
           "size": {
@@ -114,7 +114,7 @@
         {
           "location": {
             "x": 1187.1434951598535,
-            "y": 2610.445318718017
+            "y": 3234.6524823761411
           },
           "nodeIndex": "Fact_Providers",
           "size": {
@@ -126,7 +126,7 @@
         {
           "location": {
             "x": 3358.3728819645075,
-            "y": 2174.1158289016175
+            "y": 2798.3229925597416
           },
           "nodeIndex": "Threshold",
           "nodeLineageTag": "a5daaf70-a869-42d2-9395-9a3a944e971d",
@@ -139,7 +139,7 @@
         {
           "location": {
             "x": 3358.3728819645075,
-            "y": 1248.4143273162479
+            "y": 1872.6214909743719
           },
           "nodeIndex": "Map Metric",
           "size": {
@@ -147,6 +147,19 @@
             "width": 234
           },
           "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 3358.3728819645075,
+            "y": 1586.7669654665174
+          },
+          "nodeIndex": "CM",
+          "nodeLineageTag": "2b3c990b-eba5-4a9e-80b4-3532095d251a",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
