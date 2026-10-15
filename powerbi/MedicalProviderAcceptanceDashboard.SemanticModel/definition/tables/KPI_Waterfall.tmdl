@@ -1,7 +1,9 @@
 table KPI_Waterfall
+	isHidden
 	lineageTag: ef2546b5-393a-4fca-b61e-8776b9279735
 
 	column Sub-KPI
+		isHidden
 		lineageTag: 5af83388-c523-440d-af28-3d27e47cc32c
 		summarizeBy: none
 		isNameInferred
@@ -11,6 +13,7 @@ table KPI_Waterfall
 		annotation SummarizationSetBy = Automatic
 
 	column 'Change (%)'
+		isHidden
 		lineageTag: d4689d5a-b3f9-4a2b-b8a0-81c4e1098b05
 		summarizeBy: sum
 		isNameInferred
@@ -21,6 +24,7 @@ table KPI_Waterfall
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column SortOrder
+		isHidden
 		formatString: 0
 		lineageTag: 6e4a8571-6d38-4a46-9d30-76b958d0c10d
 		summarizeBy: sum

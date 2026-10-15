@@ -11,6 +11,7 @@ table Acceptance_Category
 		annotation SummarizationSetBy = Automatic
 
 	column 'Color Hex'
+		isHidden
 		lineageTag: c3c2203d-1a3a-4711-8a09-d5536b63bb1c
 		summarizeBy: none
 		isNameInferred
@@ -19,6 +20,7 @@ table Acceptance_Category
 		annotation SummarizationSetBy = Automatic
 
 	column SortOrder
+		isHidden
 		formatString: 0
 		lineageTag: 1ebc7d4b-7f2b-43bc-8d91-5a1d5f0330a8
 		summarizeBy: sum

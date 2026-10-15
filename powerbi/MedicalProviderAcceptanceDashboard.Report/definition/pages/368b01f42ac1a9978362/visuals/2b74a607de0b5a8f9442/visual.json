@@ -46,7 +46,8 @@
                 }
               },
               "queryRef": "..Measures.Test Precision",
-              "nativeQueryRef": "Test Precision"
+              "nativeQueryRef": "Precision",
+              "displayName": "Precision"
             },
             {
               "field": {
@@ -245,6 +246,19 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Precision rises and recall falls as the threshold increases; they cross near 0.55\n'"
                 }
               }
             }

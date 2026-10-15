@@ -19,10 +19,13 @@ table CM
 
 	column Order
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: cd85c4ac-9a5b-448b-942a-448576e68403
 		summarizeBy: none
 		sourceColumn: Order
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 

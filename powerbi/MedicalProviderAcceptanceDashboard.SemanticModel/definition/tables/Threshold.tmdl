@@ -1,6 +1,7 @@
 table Threshold
 	lineageTag: a5daaf70-a869-42d2-9395-9a3a944e971d
 
+	/// Decision threshold selected in the slicer (default 0.50).
 	measure 'Threshold Value' = SELECTEDVALUE('Threshold'[Threshold], 0.5)
 		lineageTag: 6ccdda6a-25fd-426f-9c40-820b944f8520
 

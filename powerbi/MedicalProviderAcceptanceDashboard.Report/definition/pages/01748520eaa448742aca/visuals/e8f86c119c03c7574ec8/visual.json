@@ -608,6 +608,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "altText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Map of the selected metric by state\n'"
+                }
+              }
             }
           }
         }

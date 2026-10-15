@@ -14,10 +14,13 @@ table 'Map Metric'
 
 	column Order
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 0246b484-c361-419b-8af5-0a6130cdbddc
 		summarizeBy: none
 		sourceColumn: Order
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 

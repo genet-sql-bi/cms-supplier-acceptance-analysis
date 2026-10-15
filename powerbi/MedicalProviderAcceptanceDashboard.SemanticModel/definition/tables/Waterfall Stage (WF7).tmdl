@@ -1,7 +1,9 @@
 table 'Waterfall Stage (WF7)'
+	isHidden
 	lineageTag: 9acde2e2-590f-4454-a343-7c7c9a235e2d
 
 	column Stage
+		isHidden
 		lineageTag: 55884c47-84ef-434e-bdfe-c9f1637aac4d
 		summarizeBy: none
 		isNameInferred
@@ -10,6 +12,7 @@ table 'Waterfall Stage (WF7)'
 		annotation SummarizationSetBy = Automatic
 
 	column SortOrder
+		isHidden
 		formatString: 0
 		lineageTag: bc41d320-d099-4fd9-ab28-1fabba6b08ba
 		summarizeBy: sum

@@ -3,7 +3,7 @@ table '..Measures'
 
 	measure 'Total Providers.' = DISTINCTCOUNT('Fact_Providers'[provider_id])
 		formatString: #,0
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview
 		lineageTag: 8b3d9f04-a77b-4b7d-92d4-6d5485acfe7a
 
 		annotation PBI_FormatHint = {"isDecimal":true}
@@ -18,7 +18,7 @@ table '..Measures'
 			    COUNTROWS('Fact_Providers')
 			)
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Actual_Acceptance
+		displayFolder: Executive Overview\Charts
 		lineageTag: 22615bc0-8856-436e-a62f-8889023020d8
 
 	measure 'Providers_Count (Scatter Plot)' =
@@ -27,7 +27,7 @@ table '..Measures'
 			    'Fact_Providers'[provider_id]
 			)
 		formatString: 0
-		displayFolder: ScatterPlot_Measures
+		displayFolder: Executive Overview\Charts
 		lineageTag: 6ffb2f03-e7b4-452c-b5e8-f792d73a6b86
 
 	measure 'Accepted (Bar Chart)' = ```
@@ -37,7 +37,7 @@ table '..Measures'
 			
 			```
 		formatString: 0
-		displayFolder: BarChart_Measures
+		displayFolder: Executive Overview\Charts
 		lineageTag: 7ba04b32-06fc-4a77-a5f9-bcc59aa04e74
 
 	measure '.Accep% (Bar Chart)' =
@@ -50,7 +50,7 @@ table '..Measures'
 			    COUNTROWS('Fact_Providers')
 			)
 		formatString: 0%;-0%;0%
-		displayFolder: BarChart_Measures
+		displayFolder: Executive Overview\Charts
 		lineageTag: b606bf08-c64f-457f-be3c-f662d9014543
 
 	measure 'PreAccept% (Bar Chart)' = ```
@@ -70,7 +70,7 @@ table '..Measures'
 			
 			```
 		formatString: 0%;-0%;0%
-		displayFolder: BarChart_Measures
+		displayFolder: Executive Overview\Charts
 		lineageTag: c22d9880-6e35-49ae-8a6d-41b106e8ab86
 
 	measure 'HighRisk% (Bar Chart)' =
@@ -84,51 +84,52 @@ table '..Measures'
 			    0
 			)
 		formatString: 0.00%;-0.00%;0.00%
-		displayFolder: BarChart_Measures
+		displayFolder: Executive Overview\Charts
 		lineageTag: cecdbc2a-1641-45b7-8e98-149bb70e15e6
 
 	measure 'Accepted Count' =
 			
 			CALCULATE( COUNTROWS(Fact_Providers), KEEPFILTERS( Fact_Providers[Actual_Acceptance_Bool] = TRUE() ) )
 		formatString: 0
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview\Charts
 		lineageTag: b103e094-994b-43c6-88b1-16a0dc990ca4
 
 	measure 'Actual Acceptance Rate' = DIVIDE( [Accepted Count], [Total Providers.] )
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview
 		lineageTag: f28057ae-4083-4b86-9853-46e85184065f
 
 	measure 'Predicted Acceptance Rate' = AVERAGE( Fact_Providers[Predicted_Class] )
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview\Charts
 		lineageTag: 0ed34f63-6b46-431f-87ce-5d42a589d3cf
 
 	measure 'Model Accuracy' = AVERAGE( Fact_Providers[Correct_Prediction] )
 		formatString: 0%;-0%;0%
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview
 		lineageTag: 96a9b330-dd50-4980-8edf-4b2cd21cdf92
 
 	measure 'Avg Predicted Probability' = AVERAGE( Fact_Providers[Predicted_Probability] )
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview
 		lineageTag: 7ee94c32-11dd-45e6-8d45-4feb9ada894e
 
+	/// Actual acceptance rate minus average predicted probability. Negative = model over-predicts.
 	measure 'Calibration Gap' = [Actual Acceptance Rate] - [Avg Predicted Probability]
 		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview
 		lineageTag: c6a025e0-8c36-46b3-810d-568f1aeda1eb
 
 	measure '.Last Refreshed' =
 			
 			FORMAT(NOW(), "MM/DD/YYYY hh:mm AM/PM")
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview\Charts
 		lineageTag: f39bbe02-1ff6-4de3-adf5-b8c2308a4fd4
 
 	measure 'Data As Of' =
 			
 			"Data as of " & FORMAT( MAX( Fact_Providers[Scoring_Date] ), "dd MMM yyyy" )
-		displayFolder: Total Providers_ Details
+		displayFolder: Executive Overview\Charts
 		lineageTag: 3eb4d4f0-a3f8-4603-98b9-ce46db4b6838
 
 	measure TP =
@@ -175,16 +176,21 @@ table '..Measures'
 		displayFolder: Model Performance
 		lineageTag: 29989f83-dae9-442e-945e-16b9cf271397
 
+	/// Share of held-out test providers (n = 11,380) classified correctly at the selected threshold.
+	/// 
 	measure 'Test Accuracy' = DIVIDE([TP] + [TN], [TP] + [FP] + [FN] + [TN])
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Model Performance
 		lineageTag: 10d38859-fd43-4373-a51d-1dca1fa06dfd
 
+	/// Of test providers predicted to accept, share that actually accept.
+	/// 
 	measure 'Test Precision' = DIVIDE([TP], [TP] + [FP])
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Model Performance
 		lineageTag: 990147d5-f4d3-455a-9c9d-6a84bddbe3c9
 
+	/// Of test providers that actually accept, share the model predicts as accepting.
 	measure 'Test Recall' = DIVIDE([TP], [TP] + [FN])
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Model Performance
@@ -199,13 +205,16 @@ table '..Measures'
 			    "Calibration gap",           [Calibration Gap]
 			)
 		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Executive Overview
 		lineageTag: 5b075d4e-1399-4c3d-be6a-c0c650c399e5
 
 	measure 'Accuracy Subtitle' =
 			
 			"All providers (incl. training): " & FORMAT([Model Accuracy], "0%")
+		displayFolder: Executive Overview
 		lineageTag: fbedffa7-f4e5-44f3-8771-91777195d240
 
+	/// Largest absolute calibration gap among states with 100+ providers.
 	measure 'Max State Calibration Gap' =
 			
 			MAXX(
@@ -213,6 +222,7 @@ table '..Measures'
 			    ABS([Calibration Gap])
 			)
 		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Executive Overview
 		lineageTag: 2ec694ac-0130-47c9-8bd1-88e78fcfe45f
 
 	measure 'Max Gap State' =
@@ -224,19 +234,23 @@ table '..Measures'
 			            [Total Providers.] >= 100),
 			        [@gap], DESC)
 			RETURN MAXX(t, Fact_Providers[State])
+		displayFolder: Executive Overview
 		lineageTag: 2f26229e-5f3e-4431-8de2-dd377f09f8fc
 
 	measure 'Rank Rate (min 100)' =
 			
 			IF([Total Providers.] >= 100, [Actual Acceptance Rate], 99)
+		displayFolder: Executive Overview
 		lineageTag: 2f148f71-6bf0-4e6c-b562-4514e95c2900
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Map Title' = SELECTEDVALUE('Map Metric'[Metric], "Actual acceptance rate") & " by state"
+		displayFolder: Executive Overview
 		lineageTag: fdc9d436-cf82-4f85-a7af-6b658c6c5386
 
 	measure 'Max Gap Subtitle' = "in " & [Max Gap State]
+		displayFolder: Executive Overview
 		lineageTag: d4e67449-850c-4be3-aec7-5e6bdf911a24
 
 	measure 'Test F1' =
@@ -248,12 +262,6 @@ table '..Measures'
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: Model Performance
 		lineageTag: f374c5e2-5a98-4c00-9551-b4b677d2dc02
-
-	measure Measure
-		displayFolder: Model Performance
-		lineageTag: 08e0d52a-0887-483e-bbed-c7b7514c894e
-
-		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
 
 	measure 'Train Accuracy' =
 			
@@ -269,6 +277,7 @@ table '..Measures'
 		displayFolder: Model Performance
 		lineageTag: 7440ed35-6a1d-4253-8ad0-ec740a19246a
 
+	/// Train accuracy minus test accuracy, in percentage points. Small gap = no overfitting.
 	measure 'Train Test Gap' = ([Train Accuracy] - [Test Accuracy]) * 100
 		formatString: 0.0" pts";-0.0" pts"
 		displayFolder: Model Performance
@@ -296,12 +305,13 @@ table '..Measures'
 			
 			VAR a = SELECTEDVALUE(CM[Actual])
 			VAR p = SELECTEDVALUE(CM[Predicted])
-			RETURN
-			SWITCH(TRUE(),
-			    a = "Accepts"  && p = "Accepts",  [TP],
-			    a = "Declines" && p = "Accepts",  [FP],
-			    a = "Accepts"  && p = "Declines", [FN],
-			    a = "Declines" && p = "Declines", [TN])
+			VAR result =
+			    SWITCH(TRUE(),
+			        a = "Accepts"  && p = "Accepts",  [TP],
+			        a = "Declines" && p = "Accepts",  [FP],
+			        a = "Accepts"  && p = "Declines", [FN],
+			        a = "Declines" && p = "Declines", [TN])
+			RETURN COALESCE(result, 0)
 		formatString: #,0
 		displayFolder: Model Performance
 		lineageTag: a8bf2032-0465-448b-b6c5-e11087a63325
@@ -315,17 +325,18 @@ table '..Measures'
 	measure 'Min Prob' = MIN(Fact_Providers[Predicted_Probability])
 		formatString: 0.000
 		isHidden
-		displayFolder: Model Performance
+		displayFolder: Helpers
 		lineageTag: a97deb30-bee0-453f-a2db-9490f2cb59a7
 
 	measure 'Max Prob' = MAX(Fact_Providers[Predicted_Probability])
 		formatString: 0.000
 		isHidden
-		displayFolder: Model Performance
+		displayFolder: Helpers
 		lineageTag: ba599e05-e0b7-4e4b-a811-646f0eea1f7a
 
 	column Keep
 		formatString: 0
+		displayFolder: Executive Overview\Charts
 		lineageTag: 7a3932c0-fca2-479c-9fe5-62ac480ad412
 		summarizeBy: sum
 		isNameInferred

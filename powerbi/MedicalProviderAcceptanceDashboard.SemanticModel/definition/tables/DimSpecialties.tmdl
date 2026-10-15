@@ -3,10 +3,13 @@ table DimSpecialties
 
 	column specialty_id
 		dataType: int64
+		isHidden
 		formatString: 0
 		lineageTag: 0fbaad67-4285-43ab-a154-265ffe9c5562
 		summarizeBy: none
 		sourceColumn: specialty_id
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = User
 
