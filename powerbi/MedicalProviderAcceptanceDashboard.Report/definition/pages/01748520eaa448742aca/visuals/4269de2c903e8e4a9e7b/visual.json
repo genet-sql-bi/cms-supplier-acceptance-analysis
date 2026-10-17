@@ -3,11 +3,11 @@
   "name": "4269de2c903e8e4a9e7b",
   "position": {
     "x": 196.47058823529412,
-    "y": 10.588235294117647,
-    "z": 9000,
+    "y": 4.8739495798319279,
+    "z": 5000,
     "height": 96.666666666666671,
     "width": 1723.3333333333335,
-    "tabOrder": 7000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "textbox",
@@ -22,7 +22,7 @@
                     "value": "Medicare Provider Assignment Acceptance Analysis",
                     "textStyle": {
                       "fontSize": "24pt",
-                      "color": "#016e51"
+                      "color": "#24343a"
                     }
                   }
                 ],

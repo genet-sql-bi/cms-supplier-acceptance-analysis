@@ -14,7 +14,7 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'FFFFBackground.png'"
+                    "Value": "'Background.png'"
                   }
                 }
               },
@@ -23,7 +23,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "FFFFBackground18681408657006326.png"
+                    "ItemName": "Background8078487002588849.png"
                   }
                 }
               },

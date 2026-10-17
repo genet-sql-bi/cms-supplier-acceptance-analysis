@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "4a70a8371b6df56be226",
   "position": {
-    "x": 314.28571428571428,
-    "y": 661.42857142857144,
-    "z": 17010,
-    "height": 378.57142857142861,
-    "width": 591.42857142857144,
-    "tabOrder": 14005
+    "x": 229.52510235331169,
+    "y": 689.909755329431,
+    "z": 14000,
+    "height": 336.28096391299152,
+    "width": 640.53516935807909,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "tableEx",
@@ -83,12 +83,12 @@
                       "Entity": "..Measures"
                     }
                   },
-                  "Property": "Calibration Gap"
+                  "Property": "Calibration Gap pts"
                 }
               },
-              "queryRef": "..Measures.Calibration Gap",
-              "nativeQueryRef": " Gap (act − pre)",
-              "displayName": " Gap (act − pre)"
+              "queryRef": "..Measures.Calibration Gap pts",
+              "nativeQueryRef": "Gap (act − pre)",
+              "displayName": "Gap (act − pre)"
             }
           ]
         }
@@ -190,20 +190,6 @@
           "selector": {
             "metadata": "..Measures.Actual Acceptance Rate"
           }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "137.26296523418392D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "..Measures.Calibration Gap"
-          }
         }
       ]
     },
@@ -285,76 +271,6 @@
   },
   "filterConfig": {
     "filters": [
-      {
-        "name": "5461e5f26fa15f9e2ac8",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Providers"
-              }
-            },
-            "Property": "Risk_Level"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "750f529faaff06dd38fe",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Total Providers."
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "75d201087e2b7abffe71",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Avg Predicted Probability"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d52a8802339cce437246",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Actual Acceptance Rate"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "db6b4b82e9d1ef967dc2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Calibration Gap"
-          }
-        },
-        "type": "Advanced"
-      },
       {
         "name": "b28b245d700d9b14083d",
         "field": {

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "43a74cd7799363a34f17",
   "position": {
-    "x": 320,
-    "y": 282.35294117647061,
-    "z": 8000,
-    "height": 357.64705882352945,
-    "width": 778.82352941176475,
-    "tabOrder": 6000
+    "x": 222.8528610058317,
+    "y": 322.93648121803153,
+    "z": 4000,
+    "height": 341.6187569909755,
+    "width": 835.36461670449489,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -383,6 +383,21 @@
           },
           "selector": {
             "metadata": "..Measures.PreAccept% (Bar Chart)"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C9D1D6'"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ]
@@ -832,62 +847,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "7962d9a6d6de5e084665",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": ".Accep% (Bar Chart)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "d828a97a929e99a3d81e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "PreAccept% (Bar Chart)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1be661613dc67029d558",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Total Providers."
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "75984fda619b3cfe32d4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Accepted Count"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

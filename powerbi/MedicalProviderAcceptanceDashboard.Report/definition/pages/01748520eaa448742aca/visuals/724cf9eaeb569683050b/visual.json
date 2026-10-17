@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "724cf9eaeb569683050b",
   "position": {
-    "x": 1128.5714285714287,
-    "y": 284.28571428571428,
+    "x": 1071.5619604052865,
+    "y": 322.93648121803153,
     "z": 0,
-    "height": 355.71428571428572,
-    "width": 787.14285714285722,
+    "height": 341.6187569909755,
+    "width": 814.01344439255888,
     "tabOrder": 0
   },
   "visual": {
@@ -485,34 +485,6 @@
         },
         "type": "Categorical",
         "howCreated": "User"
-      },
-      {
-        "name": "0d0316ab40f753ba56a4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Actual Acceptance Rate"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "36ef3e3f254351dc541a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Predicted Acceptance Rate"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

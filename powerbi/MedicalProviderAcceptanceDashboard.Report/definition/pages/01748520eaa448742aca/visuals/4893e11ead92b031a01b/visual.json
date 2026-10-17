@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "4893e11ead92b031a01b",
   "position": {
-    "x": 310,
-    "y": 655.71428571428578,
+    "x": 218.84951619734369,
+    "y": 687.240858790439,
     "z": 2000,
-    "height": 385.71428571428572,
-    "width": 594.28571428571433,
+    "height": 353.62879141643953,
+    "width": 661.8863416700151,
     "tabOrder": 2000
   },
   "visual": {
@@ -381,7 +381,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2E7D32'"
+                      "Value": "'#5B8C5A'"
                     }
                   }
                 }
@@ -422,7 +422,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#B27070'"
+                      "Value": "'#B5525C'"
                     }
                   }
                 }
@@ -448,6 +448,47 @@
                     "Right": {
                       "Literal": {
                         "Value": "'High Risk'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7F8C93'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Fact_Providers"
+                          }
+                        },
+                        "Property": "Risk_Level"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Medium Risk'"
                       }
                     }
                   }
@@ -764,48 +805,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "0893648ccf9b5ac4bec0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Providers"
-              }
-            },
-            "Property": "Risk_Level"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "7ad601a0577ae3dfc458",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Actual Acceptance Rate"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a5e48419f43fa18556a9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Avg Predicted Probability"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

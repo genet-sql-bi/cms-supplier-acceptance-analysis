@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "e8f86c119c03c7574ec8",
   "position": {
-    "x": 930.00000000000011,
-    "y": 705.71428571428578,
+    "x": 904.75592671828679,
+    "y": 728.608755144815,
     "z": 1000,
-    "height": 330,
-    "width": 597.14285714285722,
+    "height": 312.26089506206358,
+    "width": 615.18065223765518,
     "tabOrder": 1000
   },
   "visual": {
@@ -111,14 +111,14 @@
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "38.09980689372592D"
+                  "Value": "37.99043974039312D"
                 }
               }
             },
             "centerLongitude": {
               "expr": {
                 "Literal": {
-                  "Value": "-96.67533047828266D"
+                  "Value": "-96.39758149070745D"
                 }
               }
             },
@@ -368,7 +368,7 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#E6EEEF'"
+                                "Value": "'#E3EEEE'"
                               }
                             }
                           },
@@ -697,62 +697,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "99892aff4debb5dacde1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Fact_Providers"
-              }
-            },
-            "Property": "State"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3bd694a67ef9a5397ae0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Avg Predicted Probability"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bd6e4af15f4d786239d9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Calibration Gap"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "321af4412408d3119391",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "..Measures"
-              }
-            },
-            "Property": "Actual_Accept % (CARD)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

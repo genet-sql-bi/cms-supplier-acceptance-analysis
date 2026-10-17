@@ -70,8 +70,13 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "FFFFBackground18681408657006326.png",
-          "path": "FFFFBackground18681408657006326.png",
+          "name": "Background8078487002588849.png",
+          "path": "Background8078487002588849.png",
+          "type": "Image"
+        },
+        {
+          "name": "BBackground7359797231033791.png",
+          "path": "BBackground7359797231033791.png",
           "type": "Image"
         }
       ]

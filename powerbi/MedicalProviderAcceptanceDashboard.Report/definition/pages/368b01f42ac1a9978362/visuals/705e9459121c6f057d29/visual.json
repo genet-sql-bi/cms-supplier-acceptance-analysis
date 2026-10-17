@@ -4,10 +4,10 @@
   "position": {
     "x": 196.47058823529412,
     "y": 10.588235294117647,
-    "z": 9000,
+    "z": 0,
     "height": 96.666666666666671,
     "width": 1723.3333333333335,
-    "tabOrder": 7000
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "textbox",
@@ -22,7 +22,7 @@
                     "value": "How well does the model predict acceptance?",
                     "textStyle": {
                       "fontSize": "24pt",
-                      "color": "#016e51"
+                      "color": "#24343a"
                     }
                   }
                 ],

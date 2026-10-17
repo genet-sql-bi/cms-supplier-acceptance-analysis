@@ -6,8 +6,6 @@ table '..Measures'
 		displayFolder: Executive Overview
 		lineageTag: 8b3d9f04-a77b-4b7d-92d4-6d5485acfe7a
 
-		annotation PBI_FormatHint = {"isDecimal":true}
-
 	measure 'Actual_Accept % (CARD)' =
 			
 			DIVIDE(
@@ -210,7 +208,7 @@ table '..Measures'
 
 	measure 'Accuracy Subtitle' =
 			
-			"All providers (incl. training): " & FORMAT([Model Accuracy], "0%")
+			"All providers (incl. training): " & FORMAT([Model Accuracy], "0.0%")
 		displayFolder: Executive Overview
 		lineageTag: fbedffa7-f4e5-44f3-8771-91777195d240
 
@@ -318,7 +316,7 @@ table '..Measures'
 
 	measure 'CM Colour' =
 			
-			IF(SELECTEDVALUE(CM[Actual]) = SELECTEDVALUE(CM[Predicted]), "#2F6F73", "#E08E2B")
+			IF(SELECTEDVALUE(CM[Actual]) = SELECTEDVALUE(CM[Predicted]), "#2F6F73", "#B5525C")
 		displayFolder: Model Performance
 		lineageTag: acc753ed-d53f-41a3-999a-a69d2e95b577
 
@@ -333,6 +331,78 @@ table '..Measures'
 		isHidden
 		displayFolder: Helpers
 		lineageTag: ba599e05-e0b7-4e4b-a811-646f0eea1f7a
+
+	measure 'Sub Total Providers' =
+			
+			VAR allN = CALCULATE([Total Providers.], REMOVEFILTERS())
+			RETURN FORMAT(DIVIDE([Total Providers.], allN), "0.0%") & " of directory"
+		displayFolder: Executive Overview
+		lineageTag: aee1b5fa-3bf6-442c-b7bd-ea2481e5eb38
+
+	measure 'Sub Actual' =
+			
+			VAR allN = CALCULATE([Total Providers.], REMOVEFILTERS())
+			VAR nat  = CALCULATE([Actual Acceptance Rate], REMOVEFILTERS())
+			VAR acc  = CALCULATE([Total Providers.], Fact_Providers[Actual_Acceptance_Bool] = TRUE())
+			VAR notA = [Total Providers.] - acc
+			RETURN
+			IF([Total Providers.] = allN,
+			    FORMAT(acc, "#,0") & " accept · " & FORMAT(notA, "#,0") & " don't",
+			    FORMAT(([Actual Acceptance Rate] - nat) * 100, "+0.0;-0.0") & " pts vs national (" & FORMAT(nat, "0.0%") & ")")
+		displayFolder: Executive Overview
+		lineageTag: 9cc8ec29-c284-4295-8c1b-69f156eae50f
+
+	measure 'Sub Predicted' =
+			
+			FORMAT(([Predicted Acceptance Rate] - [Actual Acceptance Rate]) * 100, "+0.0;-0.0") & " pts vs actual"
+		displayFolder: Executive Overview
+		lineageTag: 58f3e12f-c509-456c-a844-55dc7e2c5b4d
+
+	measure 'Sub Accuracy' =
+			
+			VAR r = CALCULATE([Actual Acceptance Rate], Fact_Providers[split] = "test")
+			VAR b = MAX(r, 1 - r)
+			RETURN "vs " & FORMAT(b, "0.0%") & " baseline"
+		displayFolder: Executive Overview
+		lineageTag: 418abe86-513a-4fb5-968f-73ed8eb057e4
+
+	measure 'Max State Calibration Gap pts' = [Max State Calibration Gap] * 100
+		formatString: 0.0" pts"
+		displayFolder: Executive Overview
+		lineageTag: 491295e6-6473-4cc0-b236-a49bf7588e18
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Sub Calibration' =
+			
+			"in " & [Max Gap State] & " · states with 100+ providers"
+		displayFolder: Executive Overview
+		lineageTag: 27397ff3-6f76-4fd9-8fae-5606275e3150
+
+	measure 'Sub Precision' =
+			
+			FORMAT([TP], "#,0") & " of " & FORMAT([TP] + [FP], "#,0") & " flagged accept"
+		displayFolder: Model Performance
+		lineageTag: 70bbd00c-3eb3-4bdb-9c02-e1b173e7f381
+
+	measure 'Sub Recall' =
+			
+			FORMAT([TP], "#,0") & " of " & FORMAT([TP] + [FN], "#,0") & " acceptors found"
+		displayFolder: Model Performance
+		lineageTag: 70b3fa78-b2bd-47a6-96fe-92d7c0e4645b
+
+	measure 'Sub F1' =
+			
+			"at threshold " & FORMAT([Threshold Value], "0.00")
+		displayFolder: Model Performance
+		lineageTag: 05db3937-5d6c-4919-bb1d-e560efc01b47
+
+	measure 'Calibration Gap pts' = [Calibration Gap] * 100
+		formatString: +0.0" pts";-0.0" pts"
+		displayFolder: Model Performance
+		lineageTag: 95e59e2b-9d86-450c-ad10-d63afe01a747
+
+		annotation PBI_FormatHint = {"isCustom":true}
 
 	column Keep
 		formatString: 0
