@@ -5,7 +5,7 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 258.71688152152177
+        "y": 132.475508578165
       },
       "nodes": [
         {
@@ -72,44 +72,6 @@
             "width": 234
           },
           "zIndex": 4
-        },
-        {
-          "location": {
-            "x": 3420.7375392676363,
-            "y": 3749.7410945911588
-          },
-          "nodeIndex": "KPI_Waterfall",
-          "nodeLineageTag": "ef2546b5-393a-4fca-b61e-8776b9279735",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 5
-        },
-        {
-          "location": {
-            "x": 3622.2293826456439,
-            "y": 3115.1906894276908
-          },
-          "nodeIndex": "Acceptance_Category",
-          "nodeLineageTag": "228ec752-fa98-49dc-b889-83519efb932a",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 8
-        },
-        {
-          "location": {
-            "x": 3358.3728819645075,
-            "y": 2976.3601024693507
-          },
-          "nodeIndex": "Waterfall Stage (WF7)",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 1
         },
         {
           "location": {

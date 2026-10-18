@@ -18,9 +18,6 @@ ref table ProviderSpecialties
 ref table DimSupplies
 ref table ProviderSupplies
 ref table '..Measures'
-ref table KPI_Waterfall
-ref table Acceptance_Category
-ref table 'Waterfall Stage (WF7)'
 ref table DateTableTemplate_82f91871-218c-4423-80a0-ac106a0dd641
 ref table LocalDateTable_ab43f79b-18d8-462a-a572-4d008f6a16b1
 ref table LocalDateTable_0b1d3eaf-05c2-43f8-84ad-dac55a4dc623
